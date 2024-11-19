@@ -8,7 +8,7 @@ steps:
   args: ['push', 'gcr.io/cbiproject2/pgadmin']
   
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-  entrypoint: 'gcloud'
+  entrypoint: gcloud
   args: ['run', 'deploy','pg-admin', '--image','gcr.io/cbiproject2/pgadmin', '--region','us-central1', '--add-cloudsql-instances', 'cbiproject2:us-central1:mypostgres','--platform','managed', '--port','80', '--allow-unauthenticated','--set-env-vars','PGADMIN_DEFAULT_EMAIL=user@gmail.com','--set-env-vars','PGADMIN_DEFAULT_PASSWORD=SuperSecret']
   
 # Steps to build a docker image for go-microservice, push it to container registry and deploy it to cloud run.  
@@ -18,11 +18,11 @@ steps:
   args: ['push', 'gcr.io/cbiproject2/go-microservice']
   
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-  entrypoint: 'gcloud'
+  entrypoint: gcloud
   args: ['run', 'deploy','go-microservice', '--image','gcr.io/cbiproject2/go-microservice', '--region','us-central1', '--add-cloudsql-instances', 'cbiproject2:us-central1:mypostgres','--platform','managed', '--port','8080', '--allow-unauthenticated']
 images:
-- 'gcr.io/cbiproject2/go-microservice'
-- 'gcr.io/cbiproject2/pgadmin'
+- gcr.io/cbiproject2/go-microservice
+- gcr.io/cbiproject2/pgadmin
 options:
-- logging: 'CLOUD_LOGGING_ONLY'
+ logging: 'CLOUD_LOGGING_ONLY'
 
