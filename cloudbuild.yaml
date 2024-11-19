@@ -1,11 +1,11 @@
 steps:
 # Steps to pull a docker image for pgadmin, push it to container registry and deploy it to cloud run.
 - name: "gcr.io/cloud-builders/docker"
-  args: 'pull', 'dpage/pgadmin4'
+  args: ['pull', 'dpage/pgadmin4']
 - name: "gcr.io/cloud-builders/docker"
-  args: 'tag', 'dpage/pgadmin4','gcr.io/cbiproject2/pgadmin'
+  args: ['tag', 'dpage/pgadmin4','gcr.io/cbiproject2/pgadmin']
 - name: "gcr.io/cloud-builders/docker"
-  args: 'push', 'gcr.io/cbiproject2/pgadmin'
+  args: ['push', 'gcr.io/cbiproject2/pgadmin']
   
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
   entrypoint: gcloud
