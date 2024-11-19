@@ -23,4 +23,6 @@ steps:
 images:
 - gcr.io/ADD_YOUR_GCP_PROJECT_ID_HERE/go-microservice
 - gcr.io/ADD_YOUR_GCP_PROJECT_ID_HERE/pgadmin
+options:
+- logging: CLOUD_LOGGING_ONLY
 
