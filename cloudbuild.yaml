@@ -19,7 +19,7 @@ steps:
   
 - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
   entrypoint: gcloud
-  args: ['run', 'deploy','go-microservice', '--image','gcr.io/quick-weft-442218-s4/go-microservice', '--region','us-central1', '--add-cloudsql-instances', 'quick-weft-442218-s4:us-central1:mypostgres','--platform','managed', '--port','5432', '--allow-unauthenticated']
+  args: ['run', 'deploy','go-microservice', '--image','gcr.io/quick-weft-442218-s4/go-microservice', '--region','us-central1', '--add-cloudsql-instances', 'quick-weft-442218-s4:us-central1:mypostgres','--platform','managed', '--port','8080', '--allow-unauthenticated']
 images:
 - gcr.io/quick-weft-442218-s4/go-microservice
 - gcr.io/quick-weft-442218-s4/pgadmin
