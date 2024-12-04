@@ -372,7 +372,7 @@ func GetTaxiTrips(db *sql.DB) {
 
 	// Get the the Taxi Trips for Taxi medallions list
 
-	var url = "https://data.cityofchicago.org/resource/wrvz-psew.json?$limit=3500"
+	var url = "https://data.cityofchicago.org/resource/wrvz-psew.json?$limit=500"
 
 	tr := &http.Transport{
 		MaxIdleConns:          10,
@@ -404,7 +404,7 @@ func GetTaxiTrips(db *sql.DB) {
 
 	// Get the Taxi Trip list for rideshare companies like Uber/Lyft list
 	// Transportation-Network-Providers-Trips:
-	var url_2 = "https://data.cityofchicago.org/resource/m6dm-c72p.json?$limit=3500"
+	var url_2 = "https://data.cityofchicago.org/resource/m6dm-c72p.json?$limit=500"
 
 	res_2, err := http.Get(url_2)
 	if err != nil {
@@ -594,7 +594,7 @@ func GetCommunityAreaUnemployment(db *sql.DB) {
 
 	// There are 77 known community areas in the data set
 	// So, set limit to 100.
-	var url = "https://data.cityofchicago.org/resource/iqnk-2tcu.json?$limit=3500"
+	var url = "https://data.cityofchicago.org/resource/iqnk-2tcu.json?$limit=100"
 
 	tr := &http.Transport{
 		MaxIdleConns:       10,
@@ -1162,8 +1162,131 @@ func GetBuildingPermits(db *sql.DB) {
 ////////////////////////////////////////////////////////////////////////////////////
 
 func GetCovidDetails(db *sql.DB) {
+	fmt.Println("GetCovidDetails: Collecting Covid Cases Data")
 
-	fmt.Println("ADD-YOUR-CODE-HERE - To Implement GetCovidDetails")
+	drop_table := `drop table if exists covid`
+	_, err := db.Exec(drop_table)
+	if err != nil {
+		panic(err)
+	}
+
+	create_table := `CREATE TABLE IF NOT EXISTS "covid" (
+						"zip_code" VARCHAR(255), 
+						"week_number" VARCHAR(255), 
+						"week_start" VARCHAR(255), 
+						"week_end" VARCHAR(255), 
+						"cases_weekly" VARCHAR(255), 
+						"cases_cumulative" VARCHAR(255),												
+						"case_rate_weekly" VARCHAR(255) , 
+						"case_rate_cumulative" VARCHAR(255), 
+						"percent_tested_positive_weekly" VARCHAR(255), 
+						"percent_tested_positive_cumulative" VARCHAR(255), 
+						"population" VARCHAR(255),	
+						PRIMARY KEY ("zip_code") 
+					);`
+
+	_, _err := db.Exec(create_table)
+	if _err != nil {
+		panic(_err)
+	}
+
+	fmt.Println("Created Table for covid.")
+
+	var url = "https://data.cityofchicago.org/resource/yhhz-zm2v.json?$limit=500"
+
+	tr := &http.Transport{
+		MaxIdleConns:       10,
+		IdleConnTimeout:    500 * time.Second,
+		DisableCompression: true,
+	}
+
+	client := &http.Client{Transport: tr}
+
+	res, err := client.Get(url)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("COVID Data: Received data from SODA REST API for COVID Cases.")
+
+	body, _ := ioutil.ReadAll(res.Body)
+	var covid_data_list CovidJsonRecords
+	json.Unmarshal(body, &covid_data_list)
+
+	s := fmt.Sprintf("\n\n Zipcode number of SODA records received = %d\n\n", len(covid_data_list))
+	io.WriteString(os.Stdout, s)
+
+	for i := 0; i < len(covid_data_list); i++ {
+
+		// We will execute defensive coding to check for messy/dirty/missing data values
+		// There are different methods to deal with messy/dirty/missing data.
+		// We will use the simplest method: drop records that have messy/dirty/missing data
+		// Any record that has messy/dirty/missing data we don't enter it in the data lake/table
+
+		zip_code := covid_data_list[i].Zip_code
+		if zip_code == "" {
+			continue
+		}
+
+		week_number := covid_data_list[i].Week_number
+		if week_number == "" {
+			continue
+		}
+
+		week_start := covid_data_list[i].Week_start
+
+		week_end := covid_data_list[i].Week_end
+
+		cases_weekly := covid_data_list[i].Cases_weekly
+
+		cases_cumulative := covid_data_list[i].Cases_cumulative
+
+		case_rate_weekly := covid_data_list[i].Case_rate_weekly
+
+		case_rate_cumulative := covid_data_list[i].Case_rate_cumulative
+
+		percent_tested_positive_weekly := covid_data_list[i].Percent_tested_positive_weekly
+
+		percent_tested_positive_cumulative := covid_data_list[i].Percent_tested_positive_cumulative
+
+		population := covid_data_list[i].Population
+
+
+		sql := `INSERT INTO covid ("zip_code" , 
+		"week_number" , 
+		"week_start" , 
+		"week_end" , 
+		"cases_weekly" ,
+		"cases_cumulative" , 
+		"case_rate_weekly" , 
+		"case_rate_cumulative" , 
+		"percent_tested_positive_weekly" , 
+		"percent_tested_positive_cumulative" ,
+		"population" )
+		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`
+
+		_, err = db.Exec(
+			sql,
+			zip_code,
+			week_number,
+			week_start,
+			week_end,
+			cases_weekly,
+			cases_cumulative,
+			case_rate_weekly,
+			case_rate_cumulative,
+			percent_tested_positive_weekly,
+			percent_tested_positive_cumulative,
+			population)
+
+		if err != nil {
+			panic(err)
+		}
+
+	}
+
+	fmt.Println("Completed Inserting Rows into the covid Table")
 	
 }
 
@@ -1197,7 +1320,97 @@ func GetCovidDetails(db *sql.DB) {
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 func GetCCVIDetails(db *sql.DB) {
+	fmt.Println("GetCCVIDDetails: Collecting Covid CCVI Data")
 
-	fmt.Println("ADD-YOUR-CODE-HERE - To Implement GetCCVIDetails")
+	drop_table := `drop table if exists ccvi`
+	_, err := db.Exec(drop_table)
+	if err != nil {
+		panic(err)
+	}
+
+	create_table := `CREATE TABLE IF NOT EXISTS "ccvi" (
+						"geography_type" VARCHAR(255), 
+						"community_area_or_zip" VARCHAR(255), 
+						"community_area_name" VARCHAR(255), 
+						"ccvi_score" VARCHAR(255), 
+						"ccvi_category" VARCHAR(255), 
+      						PRIMARY KEY ("community_area_or_zip")
+					);`
+
+	
+	_, _err := db.Exec(create_table)
+	if _err != nil {
+		panic(_err)
+	}
+
+	fmt.Println("Created Table for covid.")
+
+	var url = "https://data.cityofchicago.org/resource/xhc6-88s9.json?$limit=500"
+
+	tr := &http.Transport{
+		MaxIdleConns:       10,
+		IdleConnTimeout:    500 * time.Second,
+		DisableCompression: true,
+	}
+
+	client := &http.Client{Transport: tr}
+
+	res, err := client.Get(url)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("CCVI Data: Received data from SODA REST API for CCVI Data.")
+
+	body, _ := ioutil.ReadAll(res.Body)
+	var ccvi_data_list CCVIJsonRecords
+	json.Unmarshal(body, &ccvi_data_list)
+
+	s := fmt.Sprintf("\n\n Zipcode number of SODA records received = %d\n\n", len(ccvi_data_list))
+	io.WriteString(os.Stdout, s)
+
+	for i := 0; i < len(ccvi_data_list); i++ {
+
+		// We will execute defensive coding to check for messy/dirty/missing data values
+		// There are different methods to deal with messy/dirty/missing data.
+		// We will use the simplest method: drop records that have messy/dirty/missing data
+		// Any record that has messy/dirty/missing data we don't enter it in the data lake/table
+
+		geography_type := ccvi_data_list[i].Geography_type
+
+		community_area_or_zip := ccvi_data_list[i].Community_areas_or_ZIP_code
+		if community_area_or_zip == "" {
+			continue
+		}
+
+		community_name := ccvi_data_list[i].Community_name
+		
+		ccvi_score := ccvi_data_list[i].CCVI_score
+
+		ccvi_category := ccvi_data_list[i].CCVI_category
+
+
+		sql := `INSERT INTO covid ("geography_type" , 
+		"community_area_or_zip" , 
+		"community_area_name" , 
+		"ccvi_score" , 
+		"ccvi_category" )
+		values($1, $2, $3, $4, $5)`
+
+		_, err = db.Exec(
+			geography_type,
+			community_area_or_zip,
+			community_name,
+			ccvi_score,
+			ccvi_category)
+
+		if err != nil {
+			panic(err)
+		}
+
+	}
+
+	fmt.Println("Completed Inserting Rows into the ccvi Table")
 	
 }
