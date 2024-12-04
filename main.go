@@ -1378,7 +1378,7 @@ func GetCCVIDetails(db *sql.DB) {
 
 		geography_type := ccvi_data_list[i].Geography_type
 
-		community_area_or_zip := ccvi_data_list[i].Community_areas_or_ZIP_code
+		community_area_or_zip := ccvi_data_list[i].Community_area_or_ZIP_code
 		if community_area_or_zip == "" {
 			continue
 		}
