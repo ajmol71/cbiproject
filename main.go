@@ -372,7 +372,7 @@ func GetTaxiTrips(db *sql.DB) {
 
 	// Get the the Taxi Trips for Taxi medallions list
 
-	var url = "https://data.cityofchicago.org/resource/wrvz-psew.json?$limit=10000"
+	var url = "https://data.cityofchicago.org/resource/wrvz-psew.json?$limit=8000"
 
 	tr := &http.Transport{
 		MaxIdleConns:          10,
