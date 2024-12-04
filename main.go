@@ -1401,6 +1401,7 @@ func GetCCVIDetails(db *sql.DB) {
 		values($1, $2, $3, $4, $5)`
 
 		_, err = db.Exec(
+			sql,
 			geography_type,
 			community_area_or_zip,
 			community_name,
