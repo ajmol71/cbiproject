@@ -356,7 +356,7 @@ func GetTaxiTrips(db *sql.DB) {
 						"dropoff_centroid_longitude" DOUBLE PRECISION, 
 						"pickup_zip_code" VARCHAR(255), 
 						"dropoff_zip_code" VARCHAR(255), 
-						PRIMARY KEY ("id") 
+						PRIMARY KEY ("trip_id") 
 					);`
 
 	_, _err := db.Exec(create_table)
