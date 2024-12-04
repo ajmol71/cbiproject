@@ -1331,7 +1331,7 @@ func GetCCVIDetails(db *sql.DB) {
 						"community_area_or_zip" VARCHAR(255), 
 						"community_area_name" VARCHAR(255), 
 						"ccvi_score" VARCHAR(255), 
-						"ccvi_category" VARCHAR(255), 
+						"ccvi_category" VARCHAR(255) 
 					);`
 
 	
