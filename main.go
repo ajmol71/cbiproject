@@ -1340,7 +1340,8 @@ func GetCCVIDetails(db *sql.DB) {
 		panic(_err)
 	}
 
-	fmt.Println("Created Table for covid.")
+	fmt.Println("Created Table for ccvi.")
+
 
 	var url = "https://data.cityofchicago.org/resource/xhc6-88s9.json?$limit=500"
 
@@ -1391,7 +1392,7 @@ func GetCCVIDetails(db *sql.DB) {
 		ccvi_category := ccvi_data_list[i].CCVI_category
 
 
-		sql := `INSERT INTO covid ("geography_type" , 
+		sql := `INSERT INTO ccvi ("geography_type" , 
 		"community_area_or_zip" , 
 		"community_area_name" , 
 		"ccvi_score" , 
