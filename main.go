@@ -1377,6 +1377,8 @@ func GetCCVIDetails(db *sql.DB) {
 		// Any record that has messy/dirty/missing data we don't enter it in the data lake/table
 
 		geography_type := ccvi_data_list[i].Geography_type
+		if geography_type == "" {
+			continue
 
 		community_area_or_zip := ccvi_data_list[i].Community_area_or_ZIP_code
 		if community_area_or_zip == "" {
