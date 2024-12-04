@@ -1180,7 +1180,7 @@ func GetCovidDetails(db *sql.DB) {
 						"case_rate_cumulative" VARCHAR(255), 
 						"percent_tested_positive_weekly" VARCHAR(255), 
 						"percent_tested_positive_cumulative" VARCHAR(255), 
-						"population" VARCHAR(255),	
+						"population" VARCHAR(255)	
 					);`
 
 	_, _err := db.Exec(create_table)
