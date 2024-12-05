@@ -856,7 +856,7 @@ func GetBuildingPermits(db *sql.DB) {
 		// Any record that has messy/dirty/missing data we don't enter it in the data lake/table
 
 		id_ := building_data_list[i].Id
-		if permit_id == "" {
+		if id_ == "" {
 			continue
 		}
 
@@ -1040,7 +1040,7 @@ func GetBuildingPermits(db *sql.DB) {
 
 		_, err = db.Exec(
 			sql,
-			permit_id,
+			id_,
 			permit_,
 			permit_type,
 			application_start_date,
