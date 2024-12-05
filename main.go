@@ -132,7 +132,7 @@ type UnemploymentJsonRecords []struct {
 
 type BuildingPermitsJsonRecords []struct {
 	Id                     string `json:"id"`
-	permit_                string `json:"permit_"`
+	Permit_num             string `json:"permit_num"`
 	Permit_type            string `json:"permit_type"`
 	Application_start_date string `json:"application_start_date"`
 	Issue_date             string `json:"issue_date"`
@@ -778,7 +778,7 @@ func GetBuildingPermits(db *sql.DB) {
 
 	create_table := `CREATE TABLE IF NOT EXISTS "building_permits" (
 						"id"   SERIAL , 
-						"permit_"    VARCHAR(255) UNIQUE, 
+						"permit_num"    VARCHAR(255) UNIQUE, 
 						"permit_type"    VARCHAR(255),  
 						"application_start_date"    TIMESTAMP(0), 
 						"issue_date"     TIMESTAMP(0), 
@@ -860,8 +860,8 @@ func GetBuildingPermits(db *sql.DB) {
 			continue
 		}
 
-		permit_ := building_data_list[i].permit_
-		if permit_ == "" {
+		permit_num := building_data_list[i].Permit_num
+		if permit_num == "" {
 			continue
 		}
 
@@ -1003,7 +1003,7 @@ func GetBuildingPermits(db *sql.DB) {
 			continue
 		}
 
-		sql := `INSERT INTO building_permits ("permit_id", "permit_", "permit_type",
+		sql := `INSERT INTO building_permits ("id", "permit_num", "permit_type",
 		"application_start_date",
 		"issue_date",
 		"street_number",
@@ -1036,12 +1036,12 @@ func GetBuildingPermits(db *sql.DB) {
 		"ycoordinate",
 		"latitude",
 		"longitude" )
-		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11, $12, $13, $14, $15,$16, $17, $18, $19, $20,$21, $22, $23, $24, $25,$26, $27, $28, $29,$30,$31, $32, $33, $34, $35)`
+		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,$16, $17, $18, $19, $20,$21, $22, $23, $24, $25,$26, $27, $28, $29,$30,$31, $32, $33, $34, $35)`
 
 		_, err = db.Exec(
 			sql,
 			id_,
-			permit_,
+			permit_num,
 			permit_type,
 			application_start_date,
 			issue_date,
