@@ -162,10 +162,6 @@ type BuildingPermitsJsonRecords []struct {
 	Community_area         string `json:"community_area"`
 	Census_tract           string `json:"census_tract"`
 	Ward                   string `json:"ward"`
-	Xcoordinate            string `json:"xcoordinate"`
-	Ycoordinate            string `json:"ycoordinate"`
-	Latitude               string `json:"latitude"`
-	Longitude              string `json:"longitude"`
 }
 
 type CovidJsonRecords []struct {
@@ -808,10 +804,6 @@ func GetBuildingPermits(db *sql.DB) {
 						"community_area"      VARCHAR(255), 
 						"census_tract"      VARCHAR(255), 
 						"ward"      VARCHAR(255), 
-						"xcoordinate"      DOUBLE PRECISION ,
-						"ycoordinate"      DOUBLE PRECISION ,
-						"latitude"      DOUBLE PRECISION ,
-						"longitude"      DOUBLE PRECISION,
 						PRIMARY KEY ("id") 
 					);`
 
@@ -934,14 +926,6 @@ func GetBuildingPermits(db *sql.DB) {
 
 		ward := building_data_list[i].Ward
 
-		xcoordinate := building_data_list[i].Xcoordinate
-
-		ycoordinate := building_data_list[i].Ycoordinate
-
-		latitude := building_data_list[i].Latitude
-
-		longitude := building_data_list[i].Longitude
-
 		sql := `INSERT INTO building_permits ("id", "permit_num", "permit_type",
 		"application_start_date",
 		"issue_date",
@@ -970,12 +954,8 @@ func GetBuildingPermits(db *sql.DB) {
 		"reported_cost",
 		"community_area",
 		"census_tract",
-		"ward",
-		"xcoordinate",
-		"ycoordinate",
-		"latitude",
-		"longitude" )
-		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,$16, $17, $18, $19, $20,$21, $22, $23, $24, $25,$26, $27, $28, $29,$30,$31, $32, $33, $34, $35)`
+		"ward")
+		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,$16, $17, $18, $19, $20,$21, $22, $23, $24, $25,$26, $27, $28, $29,$30,$31)`
 
 		_, err = db.Exec(
 			sql,
@@ -1009,11 +989,7 @@ func GetBuildingPermits(db *sql.DB) {
 			reported_cost,
 			community_area,
 			census_tract,
-			ward,
-			xcoordinate,
-			ycoordinate,
-			latitude,
-			longitude)
+			ward)
 
 		if err != nil {
 			panic(err)
