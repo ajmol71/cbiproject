@@ -132,16 +132,13 @@ type UnemploymentJsonRecords []struct {
 
 type BuildingPermitsJsonRecords []struct {
 	Id                     string `json:"id"`
-	Permit_Code            string `json:"permit_"`
+	permit_                string `json:"permit_"`
 	Permit_type            string `json:"permit_type"`
-	Review_type            string `json:"review_type"`
 	Application_start_date string `json:"application_start_date"`
 	Issue_date             string `json:"issue_date"`
-	Processing_time        string `json:"processing_time"`
 	Street_number          string `json:"street_number"`
 	Street_direction       string `json:"street_direction"`
 	Street_name            string `json:"street_name"`
-	Suffix                 string `json:"suffix"`
 	Work_description       string `json:"work_description"`
 	Building_fee_paid      string `json:"building_fee_paid"`
 	Zoning_fee_paid        string `json:"zoning_fee_paid"`
@@ -162,8 +159,6 @@ type BuildingPermitsJsonRecords []struct {
 	Contact_1_state        string `json:"contact_1_state"`
 	Contact_1_zipcode      string `json:"contact_1_zipcode"`
 	Reported_cost          string `json:"reported_cost"`
-	Pin1                   string `json:"pin1"`
-	Pin2                   string `json:"pin2"`
 	Community_area         string `json:"community_area"`
 	Census_tract           string `json:"census_tract"`
 	Ward                   string `json:"ward"`
@@ -780,19 +775,16 @@ func GetBuildingPermits(db *sql.DB) {
 		panic(err)
 	}
 
+
 	create_table := `CREATE TABLE IF NOT EXISTS "building_permits" (
 						"id"   SERIAL , 
-						"permit_id" VARCHAR(255) UNIQUE, 
-						"permit_code" VARCHAR(255), 
-						"permit_type" VARCHAR(255),  
-						"review_type"      VARCHAR(255), 
-						"application_start_date"      VARCHAR(255), 
-						"issue_date"      VARCHAR(255), 
-						"processing_time"      VARCHAR(255), 
+						"permit_"    VARCHAR(255) UNIQUE, 
+						"permit_type"    VARCHAR(255),  
+						"application_start_date"    TIMESTAMP(0), 
+						"issue_date"     TIMESTAMP(0), 
 						"street_number"      VARCHAR(255), 
 						"street_direction"      VARCHAR(255), 
 						"street_name"      VARCHAR(255), 
-						"suffix"      VARCHAR(255), 
 						"work_description"      TEXT, 
 						"building_fee_paid"      VARCHAR(255), 
 						"zoning_fee_paid"      VARCHAR(255), 
@@ -813,8 +805,6 @@ func GetBuildingPermits(db *sql.DB) {
 						"contact_1_state"      VARCHAR(255), 
 						"contact_1_zipcode"      VARCHAR(255), 
 						"reported_cost"      VARCHAR(255), 
-						"pin1"      VARCHAR(255), 
-						"pin2"      VARCHAR(255), 
 						"community_area"      VARCHAR(255), 
 						"census_tract"      VARCHAR(255), 
 						"ward"      VARCHAR(255), 
@@ -865,23 +855,18 @@ func GetBuildingPermits(db *sql.DB) {
 		// We will use the simplest method: drop records that have messy/dirty/missing data
 		// Any record that has messy/dirty/missing data we don't enter it in the data lake/table
 
-		permit_id := building_data_list[i].Id
+		id_ := building_data_list[i].Id
 		if permit_id == "" {
 			continue
 		}
 
-		permit_code := building_data_list[i].Permit_Code
-		if permit_code == "" {
+		permit_ := building_data_list[i].permit_
+		if permit_ == "" {
 			continue
 		}
 
 		permit_type := building_data_list[i].Permit_type
 		if permit_type == "" {
-			continue
-		}
-
-		review_type := building_data_list[i].Review_type
-		if review_type == "" {
 			continue
 		}
 
@@ -893,11 +878,6 @@ func GetBuildingPermits(db *sql.DB) {
 		if issue_date == "" {
 			continue
 		}
-		processing_time := building_data_list[i].Processing_time
-		if processing_time == "" {
-			continue
-		}
-
 		street_number := building_data_list[i].Street_number
 		if street_number == "" {
 			continue
@@ -908,10 +888,6 @@ func GetBuildingPermits(db *sql.DB) {
 		}
 		street_name := building_data_list[i].Street_name
 		if street_name == "" {
-			continue
-		}
-		suffix := building_data_list[i].Suffix
-		if suffix == "" {
 			continue
 		}
 		work_description := building_data_list[i].Work_description
@@ -1001,13 +977,6 @@ func GetBuildingPermits(db *sql.DB) {
 			continue
 		}
 
-		pin1 := building_data_list[i].Pin1
-		if pin1 == "" {
-			continue
-		}
-
-		pin2 := building_data_list[i].Pin2
-
 		community_area := building_data_list[i].Community_area
 
 		census_tract := building_data_list[i].Census_tract
@@ -1034,14 +1003,12 @@ func GetBuildingPermits(db *sql.DB) {
 			continue
 		}
 
-		sql := `INSERT INTO building_permits ("permit_id", "permit_code", "permit_type","review_type",
+		sql := `INSERT INTO building_permits ("permit_id", "permit_", "permit_type",
 		"application_start_date",
 		"issue_date",
-		"processing_time",
 		"street_number",
 		"street_direction",
 		"street_name",
-		"suffix",
 		"work_description",
 		"building_fee_paid",
 		"zoning_fee_paid",
@@ -1062,8 +1029,6 @@ func GetBuildingPermits(db *sql.DB) {
 		"contact_1_state",
 		"contact_1_zipcode",
 		"reported_cost",
-		"pin1",
-		"pin2",
 		"community_area",
 		"census_tract",
 		"ward",
@@ -1071,21 +1036,18 @@ func GetBuildingPermits(db *sql.DB) {
 		"ycoordinate",
 		"latitude",
 		"longitude" )
-		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11, $12, $13, $14, $15,$16, $17, $18, $19, $20,$21, $22, $23, $24, $25,$26, $27, $28, $29,$30,$31, $32, $33, $34, $35,$36, $37, $38, $39, $40)`
+		values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11, $12, $13, $14, $15,$16, $17, $18, $19, $20,$21, $22, $23, $24, $25,$26, $27, $28, $29,$30,$31, $32, $33, $34, $35)`
 
 		_, err = db.Exec(
 			sql,
 			permit_id,
-			permit_code,
+			permit_,
 			permit_type,
-			review_type,
 			application_start_date,
 			issue_date,
-			processing_time,
 			street_number,
 			street_direction,
 			street_name,
-			suffix,
 			work_description,
 			building_fee_paid,
 			zoning_fee_paid,
@@ -1106,8 +1068,6 @@ func GetBuildingPermits(db *sql.DB) {
 			contact_1_state,
 			contact_1_zipcode,
 			reported_cost,
-			pin1,
-			pin2,
 			community_area,
 			census_tract,
 			ward,
