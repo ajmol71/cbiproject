@@ -132,7 +132,7 @@ type UnemploymentJsonRecords []struct {
 
 type BuildingPermitsJsonRecords []struct {
 	Id                     string `json:"id"`
-	Permit_num             string `json:"permit_num"`
+	Permit_num             string `json:"permit_"`
 	Permit_type            string `json:"permit_type"`
 	Application_start_date string `json:"application_start_date"`
 	Issue_date             string `json:"issue_date"`
@@ -879,129 +879,68 @@ func GetBuildingPermits(db *sql.DB) {
 			continue
 		}
 		street_number := building_data_list[i].Street_number
-		if street_number == "" {
-			continue
-		}
+
 		street_direction := building_data_list[i].Street_direction
-		if street_direction == "" {
-			continue
-		}
+
 		street_name := building_data_list[i].Street_name
-		if street_name == "" {
-			continue
-		}
+
 		work_description := building_data_list[i].Work_description
-		if work_description == "" {
-			continue
-		}
+
 		building_fee_paid := building_data_list[i].Building_fee_paid
 		if building_fee_paid == "" {
 			continue
 		}
 		zoning_fee_paid := building_data_list[i].Zoning_fee_paid
-		if zoning_fee_paid == "" {
-			continue
-		}
+
 		other_fee_paid := building_data_list[i].Other_fee_paid
-		if other_fee_paid == "" {
-			continue
-		}
+
 		subtotal_paid := building_data_list[i].Subtotal_paid
-		if subtotal_paid == "" {
-			continue
-		}
+
 		building_fee_unpaid := building_data_list[i].Building_fee_unpaid
-		if building_fee_unpaid == "" {
-			continue
-		}
+
 		zoning_fee_unpaid := building_data_list[i].Zoning_fee_unpaid
-		if zoning_fee_unpaid == "" {
-			continue
-		}
+
 		other_fee_unpaid := building_data_list[i].Other_fee_unpaid
-		if other_fee_unpaid == "" {
-			continue
-		}
+
 		subtotal_unpaid := building_data_list[i].Subtotal_unpaid
-		if subtotal_unpaid == "" {
-			continue
-		}
+
 		building_fee_waived := building_data_list[i].Building_fee_waived
-		if building_fee_waived == "" {
-			continue
-		}
+
 		zoning_fee_waived := building_data_list[i].Zoning_fee_waived
-		if zoning_fee_waived == "" {
-			continue
-		}
+
 		other_fee_waived := building_data_list[i].Other_fee_waived
-		if other_fee_waived == "" {
-			continue
-		}
 
 		subtotal_waived := building_data_list[i].Subtotal_waived
-		if subtotal_waived == "" {
-			continue
-		}
+
 		total_fee := building_data_list[i].Total_fee
-		if total_fee == "" {
-			continue
-		}
 
 		contact_1_type := building_data_list[i].Contact_1_type
-		if contact_1_type == "" {
-			continue
-		}
 
 		contact_1_name := building_data_list[i].Contact_1_name
-		if contact_1_name == "" {
-			continue
-		}
 
 		contact_1_city := building_data_list[i].Contact_1_city
-		if contact_1_city == "" {
-			continue
-		}
+		
 		contact_1_state := building_data_list[i].Contact_1_state
-		if contact_1_state == "" {
-			continue
-		}
 
 		contact_1_zipcode := building_data_list[i].Contact_1_zipcode
-		if contact_1_zipcode == "" {
-			continue
-		}
 
 		reported_cost := building_data_list[i].Reported_cost
-		if reported_cost == "" {
-			continue
-		}
 
 		community_area := building_data_list[i].Community_area
-
-		census_tract := building_data_list[i].Census_tract
-		if census_tract == "" {
+		if community_area == "" {
 			continue
 		}
+		census_tract := building_data_list[i].Census_tract
 
 		ward := building_data_list[i].Ward
-		if ward == "" {
-			continue
-		}
 
 		xcoordinate := building_data_list[i].Xcoordinate
 
 		ycoordinate := building_data_list[i].Ycoordinate
 
 		latitude := building_data_list[i].Latitude
-		if latitude == "" {
-			continue
-		}
 
 		longitude := building_data_list[i].Longitude
-		if longitude == "" {
-			continue
-		}
 
 		sql := `INSERT INTO building_permits ("id", "permit_num", "permit_type",
 		"application_start_date",
