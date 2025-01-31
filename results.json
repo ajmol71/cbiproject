@@ -1,0 +1,512 @@
+{
+    "taxis_data": [
+        {
+            "id": 1,
+            "trip_id": "9a487d97cd444f768065617fb0d7b0f10b602dca",
+            "trip_start_timestamp": 1704066300000,
+            "trip_end_timestamp": 1704067200000,
+            "pickup_zip_code": "60657",
+            "dropoff_zip_code": "60657"
+        },
+        {
+            "id": 2,
+            "trip_id": "8bcad727d56e9761517e7129cc94ede7274f60fa",
+            "trip_start_timestamp": 1704066300000,
+            "trip_end_timestamp": 1704067200000,
+            "pickup_zip_code": "60607",
+            "dropoff_zip_code": "60607"
+        },
+        {
+            "id": 3,
+            "trip_id": "ce61e0f21271970f7bf3006d489638d1c320a62f",
+            "trip_start_timestamp": 1704066300000,
+            "trip_end_timestamp": 1704069900000,
+            "pickup_zip_code": "60604",
+            "dropoff_zip_code": "60657"
+        },
+        {
+            "id": 4,
+            "trip_id": "7de7d6b1667cea33735670f88c50e9631e719f04",
+            "trip_start_timestamp": 1704066300000,
+            "trip_end_timestamp": 1704067200000,
+            "pickup_zip_code": "60638",
+            "dropoff_zip_code": "60622"
+        },
+        {
+            "id": 5,
+            "trip_id": "408dbbbbb5efe8825b9802e9e47b73bde2cad640",
+            "trip_start_timestamp": 1704066300000,
+            "trip_end_timestamp": 1704068100000,
+            "pickup_zip_code": "60638",
+            "dropoff_zip_code": "60607"
+        }
+    ],
+    "unemployment_data": [
+        {
+            "id": 1,
+            "community_area": "1",
+            "community_area_name": "Rogers Park",
+            "assault_homicide": "7.7",
+            "below_poverty_level": "22.7",
+            "crowded_housing": "7.9",
+            "dependency": "28.8",
+            "unemployment": "7.5",
+            "per_capita_income": "23714"
+        },
+        {
+            "id": 2,
+            "community_area": "2",
+            "community_area_name": "West Ridge",
+            "assault_homicide": "5.8",
+            "below_poverty_level": "15.1",
+            "crowded_housing": "7",
+            "dependency": "38.3",
+            "unemployment": "7.9",
+            "per_capita_income": "21375"
+        },
+        {
+            "id": 3,
+            "community_area": "3",
+            "community_area_name": "Uptown",
+            "assault_homicide": "5.4",
+            "below_poverty_level": "22.7",
+            "crowded_housing": "4.6",
+            "dependency": "22.2",
+            "unemployment": "7.7",
+            "per_capita_income": "32355"
+        },
+        {
+            "id": 4,
+            "community_area": "4",
+            "community_area_name": "Lincoln Square",
+            "assault_homicide": "5",
+            "below_poverty_level": "9.5",
+            "crowded_housing": "3.1",
+            "dependency": "25.6",
+            "unemployment": "6.8",
+            "per_capita_income": "35503"
+        },
+        {
+            "id": 5,
+            "community_area": "5",
+            "community_area_name": "North Center",
+            "assault_homicide": "1",
+            "below_poverty_level": "7.1",
+            "crowded_housing": "0.2",
+            "dependency": "25.5",
+            "unemployment": "4.5",
+            "per_capita_income": "51615"
+        }
+    ],
+    "building_permits_data": [
+        {
+            "id": 2706282,
+            "permit_num": "100622550",
+            "permit_type": "PERMIT - ELEVATOR EQUIPMENT",
+            "issue_date": 1446681600000,
+            "total_fee": "2490",
+            "reported_cost": "666058",
+            "community_area": "28"
+        },
+        {
+            "id": 2713781,
+            "permit_num": "100626588",
+            "permit_type": "PERMIT - EASY PERMIT PROCESS",
+            "issue_date": 1449446400000,
+            "total_fee": "175",
+            "reported_cost": "4000",
+            "community_area": "22"
+        },
+        {
+            "id": 2716840,
+            "permit_num": "100628184",
+            "permit_type": "PERMIT - EASY PERMIT PROCESS",
+            "issue_date": 1450310400000,
+            "total_fee": "325",
+            "reported_cost": "12000",
+            "community_area": "42"
+        },
+        {
+            "id": 2708080,
+            "permit_num": "100623607",
+            "permit_type": "PERMIT - EASY PERMIT PROCESS",
+            "issue_date": 1447718400000,
+            "total_fee": "325",
+            "reported_cost": "13000",
+            "community_area": "35"
+        },
+        {
+            "id": 2741899,
+            "permit_num": "100641877",
+            "permit_type": "PERMIT - EASY PERMIT PROCESS",
+            "issue_date": 1459468800000,
+            "total_fee": "400",
+            "reported_cost": "49912",
+            "community_area": "43"
+        }
+    ],
+    "covid_data": [
+        {
+            "zip_code": "60622",
+            "week_number": "31",
+            "week_start": "2020-07-26T00:00:00.000",
+            "week_end": "2020-08-01T00:00:00.000",
+            "cases_weekly": "28",
+            "cases_cumulative": "877",
+            "case_rate_weekly": "53",
+            "case_rate_cumulative": "1661.2",
+            "percent_tested_positive_weekly": "0.029",
+            "percent_tested_positive_cumulative": "0.067",
+            "population": "52793"
+        },
+        {
+            "zip_code": "60622",
+            "week_number": "32",
+            "week_start": "2020-08-02T00:00:00.000",
+            "week_end": "2020-08-08T00:00:00.000",
+            "cases_weekly": "34",
+            "cases_cumulative": "911",
+            "case_rate_weekly": "64.4",
+            "case_rate_cumulative": "1725.6",
+            "percent_tested_positive_weekly": "0.028",
+            "percent_tested_positive_cumulative": "0.063",
+            "population": "52793"
+        },
+        {
+            "zip_code": "60622",
+            "week_number": "33",
+            "week_start": "2020-08-09T00:00:00.000",
+            "week_end": "2020-08-15T00:00:00.000",
+            "cases_weekly": "41",
+            "cases_cumulative": "952",
+            "case_rate_weekly": "77.7",
+            "case_rate_cumulative": "1803.3",
+            "percent_tested_positive_weekly": "0.033",
+            "percent_tested_positive_cumulative": "0.06",
+            "population": "52793"
+        },
+        {
+            "zip_code": "60622",
+            "week_number": "34",
+            "week_start": "2020-08-16T00:00:00.000",
+            "week_end": "2020-08-22T00:00:00.000",
+            "cases_weekly": "42",
+            "cases_cumulative": "994",
+            "case_rate_weekly": "79.6",
+            "case_rate_cumulative": "1882.8",
+            "percent_tested_positive_weekly": "0.03",
+            "percent_tested_positive_cumulative": "0.057",
+            "population": "52793"
+        },
+        {
+            "zip_code": "60622",
+            "week_number": "35",
+            "week_start": "2020-08-23T00:00:00.000",
+            "week_end": "2020-08-29T00:00:00.000",
+            "cases_weekly": "45",
+            "cases_cumulative": "1039",
+            "case_rate_weekly": "85.2",
+            "case_rate_cumulative": "1968.1",
+            "percent_tested_positive_weekly": "0.028",
+            "percent_tested_positive_cumulative": "0.055",
+            "population": "52793"
+        }
+    ],
+    "ccvi_data": [
+        {
+            "geography_type": "CA",
+            "community_area_or_zip": "70",
+            "community_area_name": "Ashburn",
+            "ccvi_score": "45.1",
+            "ccvi_category": "MEDIUM"
+        },
+        {
+            "geography_type": "ZIP",
+            "community_area_or_zip": "60625",
+            "community_area_name": "",
+            "ccvi_score": "25.5",
+            "ccvi_category": "LOW"
+        },
+        {
+            "geography_type": "CA",
+            "community_area_or_zip": "1",
+            "community_area_name": "Rogers Park",
+            "ccvi_score": "30.9",
+            "ccvi_category": "LOW"
+        },
+        {
+            "geography_type": "ZIP",
+            "community_area_or_zip": "60612",
+            "community_area_name": "",
+            "ccvi_score": "31.7",
+            "ccvi_category": "MEDIUM"
+        },
+        {
+            "geography_type": "ZIP",
+            "community_area_or_zip": "60641",
+            "community_area_name": "",
+            "ccvi_score": "36.1",
+            "ccvi_category": "MEDIUM"
+        }
+    ],
+    "Q2": {
+        "midway_trips": [
+            {
+                "Zip": "60622",
+                "count": 2
+            },
+            {
+                "Zip": "60607",
+                "count": 3
+            },
+            {
+                "Zip": "60653",
+                "count": 1
+            },
+            {
+                "Zip": "60623",
+                "count": 1
+            },
+            {
+                "Zip": "60657",
+                "count": 2
+            },
+            {
+                "Zip": "60640",
+                "count": 1
+            },
+            {
+                "Zip": "60660",
+                "count": 1
+            },
+            {
+                "Zip": "60610",
+                "count": 1
+            },
+            {
+                "Zip": "60614",
+                "count": 1
+            },
+            {
+                "Zip": "60618",
+                "count": 1
+            },
+            {
+                "Zip": "60619",
+                "count": 1
+            },
+            {
+                "Zip": "60622",
+                "count": 1
+            },
+            {
+                "Zip": "60610",
+                "count": 1
+            },
+            {
+                "Zip": "60638",
+                "count": 1
+            },
+            {
+                "Zip": "60625",
+                "count": 1
+            },
+            {
+                "Zip": "60616",
+                "count": 2
+            },
+            {
+                "Zip": "60652",
+                "count": 1
+            },
+            {
+                "Zip": "60638",
+                "count": 1
+            }
+        ],
+        "ohare_trips": []
+    },
+    "Q3": [
+        {
+            "Zip": "60634",
+            "countin": 0,
+            "countout": 2
+        },
+        {
+            "Zip": "60635",
+            "countin": 0,
+            "countout": 0
+        },
+        {
+            "Zip": "60624",
+            "countin": 1,
+            "countout": 1
+        },
+        {
+            "Zip": "60639",
+            "countin": 1,
+            "countout": 3
+        },
+        {
+            "Zip": "60647",
+            "countin": 4,
+            "countout": 22
+        },
+        {
+            "Zip": "60651",
+            "countin": 1,
+            "countout": 5
+        },
+        {
+            "Zip": "60634",
+            "countin": 0,
+            "countout": 2
+        },
+        {
+            "Zip": "60635",
+            "countin": 0,
+            "countout": 0
+        },
+        {
+            "Zip": "60622",
+            "countin": 7,
+            "countout": 22
+        },
+        {
+            "Zip": "60624",
+            "countin": 1,
+            "countout": 1
+        },
+        {
+            "Zip": "60639",
+            "countin": 1,
+            "countout": 3
+        },
+        {
+            "Zip": "60647",
+            "countin": 4,
+            "countout": 22
+        },
+        {
+            "Zip": "60651",
+            "countin": 1,
+            "countout": 5
+        },
+        {
+            "Zip": "60674",
+            "countin": 0,
+            "countout": 0
+        },
+        {
+            "Zip": "60636",
+            "countin": 0,
+            "countout": 1
+        },
+        {
+            "Zip": "60707",
+            "countin": 0,
+            "countout": 1
+        },
+        {
+            "Zip": "60609",
+            "countin": 1,
+            "countout": 5
+        },
+        {
+            "Zip": "60621",
+            "countin": 3,
+            "countout": 2
+        },
+        {
+            "Zip": "60620",
+            "countin": 1,
+            "countout": 3
+        },
+        {
+            "Zip": "60644",
+            "countin": 5,
+            "countout": 5
+        },
+        {
+            "Zip": "60628",
+            "countin": 6,
+            "countout": 10
+        },
+        {
+            "Zip": "60623",
+            "countin": 4,
+            "countout": 8
+        },
+        {
+            "Zip": "60629",
+            "countin": 4,
+            "countout": 5
+        },
+        {
+            "Zip": "60632",
+            "countin": 0,
+            "countout": 2
+        }
+    ],
+    "Q5": [
+        {
+            "high_unemployment": [
+                {
+                    "Community Area": "64",
+                    "Unemployment": "9.6",
+                    "Per Capita Income": "23920"
+                },
+                {
+                    "Community Area": "55",
+                    "Unemployment": "9.6",
+                    "Per Capita Income": "22561"
+                },
+                {
+                    "Community Area": "21",
+                    "Unemployment": "9.3",
+                    "Per Capita Income": "20489"
+                },
+                {
+                    "Community Area": "77",
+                    "Unemployment": "9",
+                    "Per Capita Income": "33364"
+                },
+                {
+                    "Community Area": "11",
+                    "Unemployment": "9",
+                    "Per Capita Income": "27280"
+                }
+            ]
+        },
+        {
+            "low_income": [
+                {
+                    "Community Area": "67",
+                    "Unemployment": "34.7",
+                    "Per Capita Income": "10559"
+                },
+                {
+                    "Community Area": "30",
+                    "Unemployment": "11.5",
+                    "Per Capita Income": "10697"
+                },
+                {
+                    "Community Area": "26",
+                    "Unemployment": "25.2",
+                    "Per Capita Income": "10951"
+                },
+                {
+                    "Community Area": "68",
+                    "Unemployment": "21.3",
+                    "Per Capita Income": "11993"
+                },
+                {
+                    "Community Area": "63",
+                    "Unemployment": "14",
+                    "Per Capita Income": "12014"
+                }
+            ]
+        }
+    ],
+    "Q6": "No results included New Construction Permits"
+}
