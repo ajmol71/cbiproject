@@ -1,6 +1,6 @@
 # cbiproject1
 
-
+This program uses Golang, Google Cloud Console, and PgAdmin to connect to the City of Chicago Chicago Data Portal API and perform a series of analysis tasks, ultimately to determine where to target infrastructure and economic projects.
 
 # LIST OF PROGRAMS AND MICROSERVICES CREATED IN THIS PROJECT:
 - Postgres instance
